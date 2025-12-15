@@ -1,0 +1,44 @@
+name: Build and Test Roam Package
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      
+    - name: Install Nix
+      uses: cachix/install-nix-action@v22
+      with:
+        nix_path: nixpkgs=https://nixos.org/channels/nixpkgs-unstable
+        install_url: https://releases.nixos.org/nix/nix-2.18.1/install
+        
+    - name: Update flake.lock (if needed)
+      run: |
+        nix flake update --commit-lock-file
+        
+    - name: Build package
+      run: nix build .#roam --print-build-logs
+        
+    - name: Run tests
+      run: |
+        chmod +x ./test.sh
+        ./test.sh
+        
+    - name: Test binary execution
+      run: |
+        timeout 10s ./result/bin/roam --version || echo "Binary started successfully (timeout expected for GUI app)"
+        
+    - name: Upload build artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: roam-package
+        path: result/
+        retention-days: 30

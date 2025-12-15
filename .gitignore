@@ -1,0 +1,25 @@
+# Nix build artifacts
+result/
+result-*
+
+# Nix store paths
+/nix/store/
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Temporary files
+*.tmp
+*.temp
+
+# Logs
+*.log
+result
