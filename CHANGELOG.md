@@ -45,6 +45,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - Example configurations
 - CI/CD pipeline setup
 
+## [196.0.0-beta001] - 2026-01-15
+
+### Updated
+- Roam application to version 196.0.0-beta001
+- Changed download URL to version-specific .deb using version variable
+- Updated SHA256 hash for new .deb package
+- Simplified dependencies to match AUR package
+
 ## [1.0.0] - 2025-12-15
 
 ### Added

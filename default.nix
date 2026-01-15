@@ -44,11 +44,11 @@
 
 stdenv.mkDerivation rec {
   pname = "roam";
-  version = "191.0.0-beta001";
+  version = "196.0.0-beta001";
 
   src = fetchurl {
-    url = "https://download.ro.am/Roam/8a86d88cfc9da3551063102e9a4e2a83/latest/linux/x64/Roam.deb";
-    sha256 = "1sr3la4pdx4w65cj2qryqr69n2gnd0fm16q3d08jcw97l2qkx0lj";
+    url = "https://download.ro.am/Roam/8a86d88cfc9da3551063102e9a4e2a83/linux/debian/binary/${version}-roam_${version}_amd64.deb";
+    sha256 = "085d6f2a0ph4ip2yc8wmv4k1x6bshswlflrwkyj87p8mipy6d4a3";
   };
 
   nativeBuildInputs = [
@@ -61,37 +61,12 @@ stdenv.mkDerivation rec {
     nss
     nspr
     xdg-utils
-    at-spi2-core
-    libdrm
     libgbm
-    libxcb
-    pulseaudio
     libsecret
     alsa-lib
     libXScrnSaver
+    pulseaudio
     glib
-    pango
-    cairo
-    gdk-pixbuf
-    fontconfig
-    freetype
-    dbus
-    expat
-    libpng
-    libtiff
-    libjpeg
-    zlib
-    cups
-    libX11
-    libXext
-    libXrandr
-    libXinerama
-    libXi
-    libXcursor
-    libXcomposite
-    libXdamage
-    libXfixes
-    ffmpeg-full
   ];
 
   unpackPhase = ''
@@ -133,41 +108,16 @@ stdenv.mkDerivation rec {
           nss
           nspr
           xdg-utils
-          at-spi2-core
-          libdrm
-          libgbm
-          libxcb
-          pulseaudio
           libsecret
-          alsa-lib
           libXScrnSaver
+          pulseaudio
           glib
-          pango
-          cairo
-          gdk-pixbuf
-          fontconfig
-          freetype
-          dbus
-          expat
-          libpng
-          libtiff
-          libjpeg
-          zlib
-          cups
-          libX11
-          libXext
-          libXrandr
-          libXinerama
-          libXi
-          libXcursor
-          libXcomposite
-          libXdamage
-          libXfixes
+          libgbm
+          alsa-lib
           stdenv.cc.cc
         ]
       } \
       --prefix XDG_DATA_DIRS : "${gtk3}/share/gsettings-schemas/${gtk3.name}:" \
-      --set GDK_PIXBUF_MODULE_FILE "${gtk3.out}/lib/gdk-pixbuf-2.0/2.10.0/loaders.cache" \
       --set GIO_EXTRA_MODULES "${glib.out}/lib/gio/modules"
   '';
 

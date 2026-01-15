@@ -10,12 +10,12 @@ A complete Nix package for [Roam](https://ro.am), the AI-Powered Virtual HQ plat
 
 ```bash
 # Using flakes (recommended)
-nix profile install github:georgesFoundation/Roam-nix#roam
+nix profile add github:georgesFoundation/Roam-nix#roam
 
 # Or locally
 git clone https://github.com/georgesFoundation/Roam-nix.git
 cd Roam-nix
-nix profile install .#roam
+nix profile add .#roam
 
 # Run Roam
 roam
@@ -61,12 +61,12 @@ home.packages = with pkgs; [ roam-nix.packages.x86_64-linux.roam ];
 
 ```bash
 # From GitHub (recommended)
-nix profile install github:georgesFoundation/Roam-nix#roam
+nix profile add github:georgesFoundation/Roam-nix#roam
 
 # From local clone
 git clone https://github.com/georgesFoundation/Roam-nix.git
 cd Roam-nix
-nix profile install .#roam
+nix profile add .#roam
 
 # Traditional Nix (without flakes)
 nix-env -if . -A roam
@@ -84,7 +84,7 @@ Or from your application menu.
 
 ## Package Details
 
-- **Version**: 191.0.0-beta001
+- **Version**: 196.0.0-beta001
 - **Platform**: x86_64-linux
 - **Source**: Official Roam .deb package
 - **License**: MIT
@@ -150,7 +150,7 @@ Feel free to submit issues and pull requests to improve this package.
 
 ## 📋 Package Details
 
-- **Version**: 191.0.0-beta001
+- **Version**: 196.0.0-beta001
 - **Platform**: x86_64-linux
 - **Source**: Official Roam .deb package
 - **License**: MIT
