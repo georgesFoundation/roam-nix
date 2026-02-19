@@ -40,6 +40,7 @@
   libXdamage,
   libXfixes,
   ffmpeg-full,
+  pipewire,
 }:
 
 stdenv.mkDerivation rec {
@@ -101,6 +102,8 @@ stdenv.mkDerivation rec {
 
     # Wrap the binary with proper environment variables
     makeWrapper $out/lib/roam/Roam $out/bin/roam \
+      --add-flags "--enable-features=WebRTCPipeWireCapturer" \
+      --add-flags "--ozone-platform-hint=auto" \
       --prefix LD_LIBRARY_PATH : ${
         lib.makeLibraryPath [
           gtk3
@@ -115,6 +118,7 @@ stdenv.mkDerivation rec {
           libgbm
           alsa-lib
           stdenv.cc.cc
+          pipewire
         ]
       } \
       --prefix XDG_DATA_DIRS : "${gtk3}/share/gsettings-schemas/${gtk3.name}:" \
