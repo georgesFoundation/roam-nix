@@ -33,6 +33,8 @@
 
         devShells.default = pkgs.mkShell {
           buildInputs = with pkgs; [
+            curl
+            just
             nixpkgs-fmt
           ];
         };
