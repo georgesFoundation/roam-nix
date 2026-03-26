@@ -22,7 +22,7 @@ jobs:
         
     - name: Update flake.lock (if needed)
       run: |
-        nix flake update --commit-lock-file
+        nix flake update
         
     - name: Build package
       run: nix build .#roam --print-build-logs
