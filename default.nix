@@ -86,9 +86,6 @@ stdenv.mkDerivation rec {
     cp -r usr/lib/roam $out/lib/
     cp -r usr/share/* $out/share/
 
-    # Create wrapper for binary
-    makeWrapper $out/lib/roam/Roam $out/bin/roam
-
     # Copy documentation
     cp -r usr/share/doc/roam $out/share/doc/
 
@@ -96,9 +93,6 @@ stdenv.mkDerivation rec {
     chmod +x $out/lib/roam/Roam
     chmod +x $out/lib/roam/chrome_crashpad_handler
     chmod +x $out/lib/roam/chrome-sandbox
-
-    # Auto patch ELF binaries (ignore missing ffmpeg for now)
-    autoPatchelf $out/lib/roam/Roam --ignore-missing="libffmpeg.so"
 
     # Wrap the binary with proper environment variables
     makeWrapper $out/lib/roam/Roam $out/bin/roam \
