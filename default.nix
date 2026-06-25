@@ -45,11 +45,11 @@
 
 stdenv.mkDerivation rec {
   pname = "roam";
-  version = "215.0.1-beta001";
+  version = "219.0.0-beta001";
 
   src = fetchurl {
     url = "https://download.ro.am/Roam/8a86d88cfc9da3551063102e9a4e2a83/linux/debian/binary/${version}-roam_${version}_amd64.deb";
-    sha256 = "0hvigdcpd7ljs19kx0v8i568yskmi9mbk0hcsrbxl71ssx739fbr";
+    sha256 = "0vv729z81dk29y8brl88wcilg6xjd2gdj342650r6z8px5ivyd5h";
   };
 
   nativeBuildInputs = [
