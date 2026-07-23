@@ -1,3 +1,7 @@
+# Build Roam package
+build:
+    nix build .#roam --print-build-logs
+
 # Update Roam to the latest version
 update:
     #!/usr/bin/env bash
