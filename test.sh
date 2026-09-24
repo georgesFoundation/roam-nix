@@ -50,6 +50,16 @@ else
     exit 1
 fi
 
+# Check that the activity helper builds and runs
+echo "Building roam-activity..."
+activity=$(nix build .#roam-activity --no-link --print-out-paths)
+if "$activity/bin/roam-activity" help > /dev/null; then
+    echo "✓ roam-activity runs"
+else
+    echo "✗ roam-activity failed to run"
+    exit 1
+fi
+
 echo "All tests passed! 🎉"
 echo ""
 echo "To run Roam:"

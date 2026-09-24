@@ -7,6 +7,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ## [Unreleased]
 
 ### Added
+- `roam-activity` CLI plus NixOS and Home Manager modules (`services.roam-activity`)
+  that keep a custom Roam activity set via a systemd user timer
 - Initial Nix package for Roam
 - Complete dependency coverage based on AUR analysis
 - Auto ELF binary patching with autoPatchelfHook

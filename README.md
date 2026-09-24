@@ -82,6 +82,40 @@ roam
 
 Or from your application menu.
 
+## ❄️ Custom Roam Activity (NixOS ftw)
+
+Roam (since 229) lets you set a custom activity on your avatar through its API.
+`roam-activity` sets one, and the included NixOS / Home Manager modules refresh
+it from a systemd user timer. Activities expire after at most one hour, so the
+refresh has to keep running.
+
+1. In Roam settings, create a personal access token. You must pick at least one scope, and any scope works (e.g. "chat read").
+2. Save it to a file only you can read, e.g. `~/.config/roam/token` or a sops-nix/agenix secret.
+3. Enable the module:
+
+```nix
+# flake.nix: add roam-nix.homeManagerModules.default to your Home Manager modules
+# (or roam-nix.nixosModules.default to your NixOS modules), then:
+services.roam-activity = {
+  enable = true;
+  tokenFile = "/home/me/.config/roam/token";
+  # All optional:
+  # userId = "...";          # looked up via token.info when unset
+  # emoji = "❄️";
+  # title = "NixOS";
+  # subtitle = "ftw";
+  # color = "purple";
+  # interval = "30min";
+};
+```
+
+To try it once by hand:
+
+```bash
+ROAM_TOKEN_FILE=~/.config/roam/token nix run github:georgesFoundation/Roam-nix#roam-activity
+nix run github:georgesFoundation/Roam-nix#roam-activity -- help   # all env vars
+```
+
 ## Package Details
 
 - **Version**: 196.0.0-beta001
