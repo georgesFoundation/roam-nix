@@ -12,6 +12,7 @@
   at-spi2-core,
   libdrm,
   libgbm,
+  libGL,
   libxcb,
   pulseaudio,
   libsecret,
@@ -97,7 +98,7 @@ stdenv.mkDerivation rec {
     # Wrap the binary with proper environment variables
     makeWrapper $out/lib/roam/Roam $out/bin/roam \
       --add-flags "--enable-features=WebRTCPipeWireCapturer" \
-      --add-flags "--ozone-platform-hint=auto" \
+      --add-flags "\''${WAYLAND_DISPLAY:+--ozone-platform=wayland}" \
       --prefix LD_LIBRARY_PATH : ${
         lib.makeLibraryPath [
           gtk3
@@ -110,6 +111,7 @@ stdenv.mkDerivation rec {
           pulseaudio
           glib
           libgbm
+          libGL
           alsa-lib
           stdenv.cc.cc
           pipewire
